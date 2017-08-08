@@ -1,0 +1,71 @@
+.sta_events{
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+}
+.calend_view{
+    display: none;
+}
+
+.fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
+    float: left;
+}
+.fc table {
+    border-spacing: 10px;
+    border-collapse: separate;
+    border: none;
+}
+
+
+.fc-unthemed .fc-content, .fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-list-view, .fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead {
+   border:none;
+}
+.fc-day-header{
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: #dddddd !important;
+    padding: 8px 5px !important;
+    border-radius:3px ;
+    font-size: 12px;
+    color: #808080;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 white;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f2f2f2+0,e8e8e8+100 */
+    background: #fff; /* Old browsers */
+    background: -moz-linear-gradient(top, #fff 0%, #e8e8e8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #fff 0%,#e8e8e8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #fff 0%,#e8e8e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#e8e8e8',GradientType=0 ); /* IE6-9 */
+}
+.fc-day{
+    border: 1px solid #dcdcdc !important;
+    border-radius: 3px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,efefef+100 */
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ffffff 0%,#efefef 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 ); /* IE6-9 */
+}
+
+.event_title{
+    font-size:  3em;
+    margin-bottom: 5px;
+}
+
+.event_info_item{
+  color:  #999999;
+  font-size: 19px;
+}
+
+.event_info_item .fa {
+    color: #e86a1f;
+    font-size: 17px;
+}
+.event_info_desc{
+    font-size: 16px;
+}
+.event_cover{
+    height: 150px;
+    width: 100%;
+}

@@ -1,0 +1,29 @@
+.we_rec{
+
+    font-size: 14px;
+    font-style: italic;
+
+
+}
+.we-head{
+    font-size:20px;
+    padding: 5px 0px;
+    font-weight: 800;
+}
+
+.we-list{
+    margin: 0px;
+    padding: 3px;
+    list-style-type: none;
+}
+
+.avatar{
+    height: 150px;
+    width: 100%;
+}
+
+.we_item{
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    padding: 4px;
+}

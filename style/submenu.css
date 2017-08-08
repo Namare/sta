@@ -1,0 +1,196 @@
+div.submenu{
+    background-color: #2d100a;
+    color:#fff !important;
+    font-size: 14px;
+    line-height: 40px;
+    height: 40px;
+    z-index: 50;
+    position: relative;
+}
+div.submenu a{color:#fff !important; margin: 0px 10px}
+
+.headsubmenu{
+    list-style-type: none;
+    background-color: #402b2a;
+    color:#fff;
+    position: absolute;
+    text-align: center;
+    margin: 0px;
+    padding: 10px 0px;
+    display: none;
+}
+
+.col-md-offset-5{
+    float: right;
+    padding-right: 100px;
+}
+.col-md-4{
+    padding-left: 75px;
+    float: left;
+}
+
+.headmenu:hover .headsubmenu {
+    display: block;
+}
+.headsubmenu li {
+    padding: 0px;
+    padding: 6px 25px;
+    width: 180px;
+    text-align: left;
+}
+.headsubmenu a{
+    color:#fff;
+    text-align: left;
+    float: left;
+
+    font-size: 13px;
+
+}
+.headsubmenu li:hover{
+    background-color: #2d100a;
+    -webkit-transition: all 0.5s !important;
+    -moz-transition: all 0.5s !important;
+    transition: all 0.5s !important;
+
+}
+
+/*SEARCH*/
+
+div.search_block_container{
+    position: absolute;
+
+    text-align: left;
+    z-index: 90;
+    top: 141px;
+    left: 5%;
+    display: none;
+
+}
+div.search_block{
+    width: 342px;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid #df6018;
+    border-radius: 3px;
+    text-align: left;
+    padding: 10px;
+
+}
+input.search_block{
+    border: 1px solid #5d5d5d;;
+    border-radius: 3px;
+    padding: 5px 15px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .6);
+    -moz-box-shadow:    0px 0px 3px 0px rgba(0, 0, 0, .6);
+    box-shadow:         0px 0px 3px 0px rgba(0, 0, 0, .6);
+    margin: 0px !important;
+    width: auto !important;
+    display: inline-block;
+}
+
+.find_btn{
+    background-color: #df6018;
+    display: inline-block;
+    padding: 0px 40px;
+    /* margin-top: 3px; */
+    font-size: 15px;
+    line-height: 35px;
+    height: 36px;
+    color: #fff;
+    border-radius: 3px;
+    border: 1px solid #f66f0f;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .6);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .6);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .6);
+    cursor: pointer;
+}
+
+
+.search_close{
+    position: relative;
+    color: #fff;
+    top: -26px;
+    right: -32px;
+    background-color: rgb(223, 96, 24);
+    padding: 0px 2px;
+    border-radius: 20px;
+    height: 30px;
+    width: 26px;
+    display: inline-block;
+    float: right;
+
+}
+.radio-block{
+    background-color: #fff;
+    padding: 10px 0px;
+    margin: 5px 0px;
+    font-size: 12px;
+    max-height: 95px;
+
+}
+.radio-block div{
+    float: left;
+}
+.radio-head{
+    font-size: 10px;
+    text-align: left;
+    margin-top: 30px;
+}
+.radio-img img{
+    max-height: 70px;
+    width: 90px;
+    padding: 0px;
+    margin-top: 23px;
+}
+.radio_player{
+    /* width: 22%; */
+    /* position: fixed; */
+    /* padding: 10px; */
+    bottom: 0px;
+    z-index: 9999999;
+    display: inline-block;
+    float: right;
+    color: #fff;
+    font-size: 16px;
+    /* border-radius: 0px 5px 0px 0px; */
+    /* border-top: 3px solid #fff; */
+    /* border-right: 3px solid #fff; */
+
+}
+
+.radio_name{font-size: 14px}
+#radio_player{display: none;}
+
+
+.load_chanels{
+    position: absolute;
+    color: #000;
+    background-color: #fff;
+    width:300px;
+    z-index: 9999;
+    padding: 10px 15px;
+    border-radius: 0px 5px 5px 0px;
+    overflow-y: scroll;
+    max-height: 280px;
+    display: none;
+    top: 41px;
+}
+.user_panel{
+    background-color: #2c1812;
+    cursor: pointer;
+   right:20px;
+    left: inherit;
+}
+.user_panel>li>a:focus, .user_panel>li>a:hover{
+    background: none;
+    text-decoration: underline;
+}
+.radio_play_btn, .show_radio_list{
+    padding: 0px;
+}
+.pad0{padding: 0px}
+
+.mg0{margin: 0px}
+
+.pad05{padding: 0px 5px}
+.pad010{padding: 0px 10px}
