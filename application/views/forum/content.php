@@ -12,11 +12,11 @@
     <div class="col-md-12 bottbrdr forum_header"><?=$forum->forum_name?></div>
     <?foreach($this->db->get_where('forums_post', array('main_forum_id'=> $forum->forum_id))->result() as $subforum){?>
    <div class="col-md-12  forumborder">
-    <div class="col-md-10 pad10">
+    <div class="col-md-10 pad10 col-xs-9">
         <div class="col-md-12 forum_title"><a class="forum_href" data-target="<?=base_url()?>forum/view_forum/<?=$subforum->post_id?>" href="<?=base_url()?>forum/view_forum/<?=$subforum->post_id?>"><?=$subforum->post_name?></a></div>
         <div class="col-md-12 forumdesc"><?=$subforum->post_description?></div>
     </div>
-    <div class="col-md-2  forum_info_sm ">
+    <div class="col-md-2 col-xs-3 forum_info_sm ">
 
         <div class="col-md-12">
             <div class="count_block"><?=$this->db->get_where('forum_thead',array('main_post_id'=>$subforum->post_id))->num_rows()?></div>

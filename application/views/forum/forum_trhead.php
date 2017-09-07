@@ -31,10 +31,10 @@
             <div class="col-md-12  forumborder">
                 <div class="col-md-2 forum_avatar">
 
-                    <div class="col-md-12  ">
+                    <div class="col-md-12 col-xs-3 ">
                         <img class="img-circle img-thumbnail "  src="<?=base_url()?>images/forum/avatar/<?=$comment->autor_id?>.jpg">
                     </div>
-                    <div class="col-md-12 comment_autor pad5">
+                    <div class="col-md-12 col-xs-9 comment_autor pad5">
                         <?=$comment->username?>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-md-12 forum_msg_footer" >
                     <div class="col-md-2"></div>
-                    <div class="col-md-2 text-center pad0">
+                    <div class="col-md-2 col-xs-3 text-center pad0">
                         <a href="javascript:void()" data-id="<?=$comment->comment_id?>" class="text-success thumb_up"><i class="fa fa-thumbs-o-up"></i> <span><?echo $this->db->get_where('sta_likes',array('comment_id'=>$comment->comment_id))->num_rows()?></span></a>
 
                         <a href="javascript:void()" data-id="<?=$comment->comment_id?>" class="text-danger thumb_down"><i class="fa fa-thumbs-o-down"></i> <span><?echo $this->db->get_where('sta_dislikes',array('comment_id'=>$comment->comment_id))->num_rows()?></span></a>
@@ -56,32 +56,32 @@
                     <div class="share_box">
                          <div class="addthis_inline_share_toolbox"></div>
                     </div>
-                    <div class="col-md-1 forum_share">
+                    <div class="col-md-1 col-xs-1 forum_share">
                         <i class="fa fa-share-alt" aria-hidden="true"></i>
                     </div>
 
 
-                    <div class="col-md-3 ">
+                    <div class="col-md-3 col-xs-5 ">
                         <i class="fa fa-clock-o" aria-hidden="true"></i> <span  style="font-size: 12px"> <?=date('G:i  d/m/Y',$comment->add_time)?></span>
                     </div>
 
 
-                    <div class="col-md-3 text-center  pull-right btn-group-xs">
+                    <div class="col-md-3 text-center  pull-right btn-group-xs col-xs-2">
                     <?if($this->ion_auth->logged_in()){?>
                         <div class="btn btn-default" data-toggle="modal" data-target="#reportModal"><i class="fa fa-flag" aria-hidden="true"></i>  Complain</div>
                     <?}?>
-                        <div class="btn btn-default forum_quote"  ><i class="fa fa-quote-right" aria-hidden="true"></i>  Reply</div></div>
+                        <div class="btn btn-default forum_quote "  ><i class="fa fa-quote-right" aria-hidden="true"></i>  Reply</div></div>
 
                 </div>
 
             </div>
 
         <?}?>
-
+        <?=$pagination?>
 
     </div >
     <?php echo smiley_js(); ?>
-    <?=$pagination?>
+
     <div class="col-md-12  forumborder pad10">
         <div class="col-md-2 forum_avatar">
 

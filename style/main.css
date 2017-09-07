@@ -233,6 +233,7 @@ div.filter{
     border-bottom: 1px solid #ddd;
 
 }
+
 div.filter input, div.filter select{
     font-size: 13px;
     height: 30px;
