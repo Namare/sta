@@ -13,11 +13,12 @@
 <div class="col-md-12 pad25">
 
 <div class="col-md-8 mgb20 ">
+    <div class="app_list_forums">
     <div class="col-md-12 pad0">
         <h1 class="forum_h1"><?=$this->db->get_where('forum_thead', array('id_thead'=>$th_id))->result()[0]->title?></h1>
     </div>
 
-    <div class="app_list_forums">
+
 
         <?$co = 0;?>
         <?foreach($comments as $comment){
@@ -28,7 +29,7 @@
             ?>
 
 
-            <div class="col-md-12  forumborder">
+            <div class="col-md-12  forumborder comment_block">
                 <div class="col-md-2 forum_avatar">
 
                     <div class="col-md-12 col-xs-3 ">
@@ -79,7 +80,38 @@
         <?}?>
         <?=$pagination?>
 
-    </div >
+        <div class="col-md-10 mgb10 app_forum_send">
+            <div class="form-group">
+            <label>Comment:</label>
+            <input class="form-control app_msg" placeholder="Leave comment">
+            </div>
+            <div class="form-group">
+                <button data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary app_msg_send">Send comment</button>
+
+                <button  data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary  app_mic"><i class="fa fa-microphone"></i></button>
+                <button  data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary  app_cam"><i class="fa fa-camera"></i></button>
+
+                <button   data-url='<?=current_url()?>' style="display: none" data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary app_audio_send"><i class="fa fa-microphone"></i> Send record</button>
+                <button  data-url='<?=current_url()?>' style="display: none" data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary app_img_send"><i class="fa fa-camera"></i> Send photo</button>
+
+                <form class="forum_photo">
+                <input name="photo_forum" style="display: none" id="app_cam"  type="file" accept="image/*"  capture="camera">
+
+                </form>
+                <form class="forum_audio">
+                <input name="micro_forum"  style="display: none" id="app_mic" type="file" accept="audio/*"  capture="true">
+                </form>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
     <?php echo smiley_js(); ?>
 
     <div class="col-md-12  forumborder pad10">
@@ -113,7 +145,9 @@
         </div>
     </div>
 
-    </div>
+
+
+    </div >
 </div>
 
 

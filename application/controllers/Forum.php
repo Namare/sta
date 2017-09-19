@@ -161,7 +161,7 @@ class Forum extends CI_Controller {
         $config['base_url'] = base_url().'forum/view_thread/'.$this->uri->segment(3);
         $config['total_rows'] = $this->db->get_where('forum_comments', array('thread_id'=>$this->uri->segment(3)))->num_rows();
         $config['per_page'] = 20;
-        $config['attributes'] = array('class' => 'forum_page');
+        $config['attributes'] = array('class' => 'forum_page sub_forum_href');
         $config['prev_link'] = '<i class="fa fa-arrow-circle-left"></i>';
         $config['next_link'] = '<i class="fa fa-arrow-circle-right"></i>';
         $config['cur_tag_open'] = '<strong class="forum_current_page">';
@@ -208,24 +208,66 @@ class Forum extends CI_Controller {
     }
 
     function audio(){
+        if($this->permission->get_user_by_key($this->input->post('key'))==false)die();
+        $user_id = $this->permission->get_user_by_key($this->input->post('key'));
 
 
-        /**
-         * Request has BLOB Data
-         * ---------------------
-         */
-        if(isset($_FILES['file'])){
-            $audio = file_get_contents($_FILES['file']['tmp_name']);
+        $config['allowed_types']        = '*';
+        $config['file_name']            = time();
+        $config['upload_path']          = $_SERVER['DOCUMENT_ROOT'].'/audio';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 0;
+        $config['max_height']           = 0;
+        $config['overwrite']           = true;
+        $this->load->library('upload', $config);
+        if($this->upload->do_upload('micro_forum')){
 
+            $data['comment'] =  strip_tags('<audio controls="controls"><source src="'.base_url().'audio/'.$this->upload->data()['file_name'].'"></audio>','<audio><source>');
+            $data['thread_id'] = $this->input->post('post_id');
+            $data['autor_id'] = $user_id;
+            $data['add_time'] = time();
+            $this->db->insert('forum_comments',$data);
 
-            $this->db->insert('audio',array('audio_name'=>$audio));
-
-
-//            $sql = $dbh->query("SELECT `id` FROM `uploads` ORDER BY `id` DESC LIMIT 1");
-//            $id = $sql->fetchColumn();
-//
-//            echo "play.php?id=$id";
         }
+
+
+        var_dump( $this->upload->display_errors());
+        var_dump($this->upload->data());
+        echo $this->input->post('th_id');
+        echo $this->upload->data()['file_name'];
+
+
+
+    }
+
+    function photo(){
+        if($this->permission->get_user_by_key($this->input->post('key'))==false)die();
+        $user_id = $this->permission->get_user_by_key($this->input->post('key'));
+
+
+        $config['allowed_types']        = 'jpg|png|jpeg';
+        $config['file_name']            = time();
+        $config['upload_path']          = $_SERVER['DOCUMENT_ROOT'].'/photo';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 0;
+        $config['max_height']           = 0;
+        $this->load->library('upload', $config);
+        if($this->upload->do_upload('photo_forum')){
+
+            $data['comment'] =  strip_tags($this->input->post('msg').' <img src="'.base_url().'photo/'.$this->upload->data()['file_name'].'"></img>','<img>');
+            $data['thread_id'] = $this->input->post('post_id');
+            $data['autor_id'] = $user_id;
+            $data['add_time'] = time();
+            $this->db->insert('forum_comments',$data);
+
+        }
+
+
+        var_dump( $this->upload->display_errors());
+        var_dump($this->upload->data());
+        echo $this->input->post('th_id');
+        echo $this->upload->data()['file_name'];
+
 
 
     }

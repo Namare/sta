@@ -25,7 +25,7 @@
 </div>
         </div>
 
-        <div class="col-md-8 col-xs-10 pad10">
+        <div class="col-md-8 col-xs-9 pad10">
             <div class="col-md-12 forum_title"><a class="sub_forum_href" data-target="<?=base_url()?>forum/view_thread/<?=$forum->id_thead?>" href="<?=base_url()?>forum/view_thread/<?=$forum->id_thead?>"><?=$forum->title?></a></div>
             <div class="col-md-12 forumdesc">
                 <?$this->db->order_by('comment_id','desc');?>
@@ -33,7 +33,7 @@
 
             </div>
         </div>
-        <div class="col-md-2 col-xs-2  forum_info_sm">
+        <div class="col-md-2 col-xs-3  forum_info_sm">
             <div class="col-md-12 ">
                 <div class="count_block"><?=$this->db->get_where('forum_comments',array('thread_id'=>$forum->id_thead))->num_rows()?></div>
                 <div class="count_block_mark"></div>

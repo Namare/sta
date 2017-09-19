@@ -102,6 +102,13 @@ class Map extends CI_Controller {
     }
 
 
+    function app_markers_dist(){
+        $this->db->join('map_markers_types','type_id=marker_type');
+        $data['markers'] = $this->db->get('map_markers')->result();
+        $this->load->view('map/app_markers_dist',$data);
+    }
+
+
 
 
 }

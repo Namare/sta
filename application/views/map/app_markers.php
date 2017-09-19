@@ -1,15 +1,14 @@
 <script>
  map_markers = [];
-var BASE_URL = 'http://stassociation.com/';
+var BASE_URL = 'https://stassociation.com/';
 <?foreach($markers as $marker){?>
     var info_marker<?=$marker->marker_id?> = new google.maps.Marker({
     position:  {lat: <?=$marker->lat?>, lng:<?=$marker->lng?>},
     map: addMAP,
-    animation: google.maps.Animation.DROP,
     icon:BASE_URL+'icon/<?=$marker->type_name?>.png'
     });
 var ninfowindow<?=$marker->marker_id?> = new google.maps.InfoWindow({
-    content:'<div class="panel mg0"><b>Added:</b> <?=date('d.m h:i', $marker->date_add)?></div>'
+    content:'<div class="panel mg0"><b>Added:</b> <?=date('d.m h:i', $marker->date_add)?></div>'+'<div data-id="<?=$marker->marker_id?>" class="btn del_info_marker btn-default btn-block mgb5">Delete marker</div>'
        ,
     maxWidth: 320
 });
