@@ -162,7 +162,7 @@
                     </div>
             </div>
             <div class="form-group form-group-sm col-md-6 pad0">
-                <label class="control-label col-md-4"> # Policy Expiration Date </label>
+                <label class="control-label col-md-4"> # Policy Expiration </label>
                 <div class="col-md-8">
                     <input class="form-control"   value="<?=$this->ion_auth->user($my->id)->row()->policy_name?>"  name="premiumname" placeholder="MM-DD-YYYY">
                 </div>

@@ -10,11 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="col-md-10  col-md-offset-1 pad0">
 <ul class="nav nav-tabs pad0">
     <li class="active"><a href="#"><b><i class="fa fa-filter" aria-hidden="true"></i> Search</b></a></li>
-
 </ul>
 </div>
         <div class="filter col-md-10 col-md-offset-1">
-        <form action="<?base_url()?>logistic" method="post">
+        <form action="<?=base_url()?>logistic" method="post">
 
             <div class="col-md-12" >
                 <div class="col-md-4 form-group">
@@ -350,7 +349,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
 
                     <?}else{?>
-                        <p>Please fill out full profile application to get access to this service. <br>Please upload following documents:</p>
+                        <p>Please fill out your profile completely to get a premium access.
+                            Go to profile. <br>Please upload following documents:</p>
                         <ul>
                             <li>CDL</li>
                             <li>DL</li>
@@ -403,7 +403,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
 
                     <?}else{?>
-                        <p>Please fill out full profile application to get access to this service. <br>Please upload following documents:</p>
+                        <p>Please fill out your profile completely to get a premium access.
+                            Go to profile. <br>Please upload following documents:</p>
                         <ul>
                         <li>CDL</li>
                         <li>DL</li>

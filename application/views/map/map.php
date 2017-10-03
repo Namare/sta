@@ -55,8 +55,13 @@
 </div>
 
 <div style="display: none">
-    <?foreach($users as $user){?>
-    <div data-user-id="<?=$user->id?>" data-lat="<?=$user->lat?>" data-lng="<?=$user->lng?>" class="p">
+    <?foreach($users as $user){
+        if( $user->status_id == 0)continue;
+      if( $user->status_id == 5)continue;
+
+        ?>
+
+    <div data-user-id="<?=$user->id?>" data-lat="<?=$user->lat?>" data-lng="<?=$user->lng?>" data-status="<?=$user->status_id?>" class="p">
         <table class="table  borderless infomap" >
             <tr>
                 <td class="col-md-1"><i class="fa fa-user-circle-o" aria-hidden="true"></i></td>
@@ -71,8 +76,6 @@
                 <td><?=$this->db->get_where('type_auto',array('auto_id'=>$user->auto_id))->result()[0]->auto_name?></td>
             </tr>
         </table>
-
-
     </div>
     <?}?>
 </div>
@@ -82,6 +85,7 @@
     <script>
         $(function(){
             $('.submenu, nav').hide();
+
 
             $('.change_status').on('change',function(){
                 $.ajax({
@@ -105,11 +109,27 @@
              alert_marker = [];
              police_marker = [];
             $('.p').each(function(data){
+                var st = '';
+                if($(this).data('status')== '1'){
+                     st = ''
+                }
+
+                if($(this).data('status')== '2'){
+                     st = '1'
+                }
+
+                if($(this).data('status')== '3'){
+                     st = '3'
+                }
+
+                if($(this).data('status')== '4'){
+                     st = '2'
+                }
                 var marker = new google.maps.Marker({
                     position:  {lat: $(this).data('lat'), lng:$(this).data('lng')},
                     map: addMAP,
                     animation: google.maps.Animation.DROP,
-                    icon:BASE_URL+'icon/track.png'
+                    icon:BASE_URL+'icon/track'+st+'.png'
                 });
                 track_marker.push(marker);
                 var infowindow = new google.maps.InfoWindow({

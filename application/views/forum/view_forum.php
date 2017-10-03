@@ -10,18 +10,25 @@
         <div class="col-md-12 pad0">
             <h1 class="forum_h1"><?=$forum_meta[0]->post_name?></h1>
         </div>
-        <div class="col-md-12  forumblock pad0">
+        <div class="col-md-12  forumblock ">
+            <div class="btn-group app_control">
+            <div class="btn btn-default dp_none return_menu" data-id="1"><i class="fa fa-arrow-circle-left"></i> Back</div>
+            <div class="btn btn-primary app_menu" data-id="add_thread"><i class="fa fa-plus"></i> New thread</div>
+            </div>
 
 
 
 
-            <?foreach($forums_head as $forum){ ?>
+
+            <?foreach($forums_head as $forum){
+                $cur_avatar = @$this->db->get_where('forum_comments',array('thread_id'=>$forum->id_thead))->result()[0]->autor_id;
+                ?>
 
     <div class="col-md-12  forumborder">
         <div class="col-md-2 forum_avatar f_a_m">
 <div class="col-md-12  ">
     <?$this->db->order_by('comment_id','desc');?>
-    <img class="img-circle img-thumbnail "  src="<?=base_url()?>images/forum/avatar/<?=@$this->db->get_where('forum_comments',array('thread_id'=>$forum->id_thead))->result()[0]->autor_id?>.jpg">
+    <img class="img-circle img-thumbnail "  src="<?=base_url()?>images/forum/avatar/<?=(!file_exists($_SERVER['DOCUMENT_ROOT'].'/images/forum/avatar/'.$cur_avatar.'.jpg'))?'noavatar':$cur_avatar?>.jpg">
 </div>
         </div>
 

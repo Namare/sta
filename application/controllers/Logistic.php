@@ -12,6 +12,7 @@ class Logistic extends CI_Controller {
         $this->breadcrumbs[] = 'STA';
         $this->breadcrumbs[] = array('name'=>'Logistics','link'=>base_url().'logistic');
         $this->breadcrumbs[] = 'Find loads';
+
     }
 
     public function index()

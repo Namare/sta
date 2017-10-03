@@ -285,3 +285,7 @@ button:focus { outline: none !important; }
 .forumdesc img{
     max-width: 300px;
 }
+
+.app_control{
+    display: none;
+}

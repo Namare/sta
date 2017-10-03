@@ -100,8 +100,8 @@ FRM = {
             if(!FRM.loginWindow()){return false};
 
             $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-            var com = $(this).parent().parent().find('.current_comment').html();
-            var com_autor = $(this).parent().parent().find('.comment_autor').text();
+            var com = $(this).parent().parent().parent().find('.current_comment').html();
+            var com_autor = $(this).parent().parent().parent().find('.comment_autor').text();
             $('#new_comment_reply').val('<blockquote class="blockquote"><p class="mb-0">'+$.trim(com)+'</p><footer class="blockquote-footer">'+$.trim(com_autor)+'</footer></blockquote>');
         });
 

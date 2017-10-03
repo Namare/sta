@@ -1,3 +1,4 @@
+<div class="no_app">
 <script>
     map_markers_dist = [];
 
@@ -12,3 +13,4 @@
 
     <?}?>
 </script>
+    </div>

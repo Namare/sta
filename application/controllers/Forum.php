@@ -122,7 +122,6 @@ class Forum extends CI_Controller {
         if ($this->uri->segment(3) == FALSE)
             return show_404();
 
-
         $data['breadcrumbs'] = $this->breadcrumbs;
         $data['breadcrumbs'][] = 'Выбрать подфорум';
         $data['add_css'][] = 'forum';
@@ -135,7 +134,6 @@ class Forum extends CI_Controller {
         $this->load->view('forum/view_forum', $content);
         $this->load->view('forum/content_right', $this->right_content);
         $this->load->view('forum/footer');
-
     }
 
 
@@ -161,6 +159,7 @@ class Forum extends CI_Controller {
         $config['base_url'] = base_url().'forum/view_thread/'.$this->uri->segment(3);
         $config['total_rows'] = $this->db->get_where('forum_comments', array('thread_id'=>$this->uri->segment(3)))->num_rows();
         $config['per_page'] = 20;
+        $config['num_links'] = 1;
         $config['attributes'] = array('class' => 'forum_page sub_forum_href');
         $config['prev_link'] = '<i class="fa fa-arrow-circle-left"></i>';
         $config['next_link'] = '<i class="fa fa-arrow-circle-right"></i>';
@@ -183,7 +182,6 @@ class Forum extends CI_Controller {
         $this->load->view('forum/forum_trhead',$content);
         $this->load->view('forum/content_right', $this->right_content);
         $this->load->view('forum/footer');
-
     }
 
 
@@ -286,8 +284,9 @@ class Forum extends CI_Controller {
         if($this->input->post('aud')!=null){
             $audio ='<audio controls="" src="'. $this->input->post('aud').'"></audio>';
         }
+        $rpl= ($this->input->post('new_comment_reply')==  'undefined')?'':$this->input->post('new_comment_reply');
 
-        $data['comment'] =  strip_tags($this->input->post('new_comment_reply').$this->input->post('cm'),'<iframe><p><footer><blockquote><img>');
+        $data['comment'] =  strip_tags($rpl.$this->input->post('cm'),'<iframe><p><footer><blockquote><img>');
         $data['thread_id'] = $this->input->post('id');
         $data['autor_id'] = $user_id;
         $data['add_time'] = time();
@@ -297,7 +296,9 @@ class Forum extends CI_Controller {
 
 
     function add_thread(){
-        if (!$this->ion_auth->logged_in())redirect(base_url().'forum');
+        if($this->permission->get_user_by_key($this->input->post('key')) !=true){
+            if(!$this->ion_auth->logged_in())redirect(base_url().'forum');
+        }
 
         $data['breadcrumbs'] = $this->breadcrumbs;
         $data['breadcrumbs'][] = 'Создать тему';
@@ -321,18 +322,22 @@ class Forum extends CI_Controller {
     }
 
     function new_thread(){
+        $user_id =
+            ($this->permission->get_user_by_key($this->input->post('k'))!=false)
+                ?$this->permission->get_user_by_key($this->input->post('k'))
+                :$this->ion_auth->get_user_id();
         if(!$this->input->post())return show_error('Нет данных.');
         if(!is_numeric($this->input->post('id')))return show_error('ошибка.');
 
 
         $data['main_post_id'] = $this->input->post('id');
         $data['title'] = $this->input->post('title');
-        $data['autor_id'] = $this->ion_auth->get_user_id();
+        $data['autor_id'] = $user_id;
         $this->db->insert('forum_thead',$data);
         $thread_new_id = $this->db->insert_id();
 
         $data2['comment'] = $this->input->post('cm');
-        $data2['autor_id'] = $this->ion_auth->get_user_id();
+        $data2['autor_id'] = $user_id;
         $data2['thread_id'] = $this->db->insert_id();
         $this->db->insert('forum_comments',$data2);
 
@@ -351,36 +356,34 @@ class Forum extends CI_Controller {
     }
 
     function feed(){
-
-
         $this->db->join('users','users.id = autor_id','left');
         $this->db->join('forum_thead','forum_thead.id_thead = thread_id','left');
         $this->db->limit(30);
         $this->db->order_by('comment_id','desc');
         $data['comments'] = $this->db->get('forum_comments')->result();
 
-
         $this->load->view('forum/feed', $data);
     }
-
     function add_like(){
-        if($this->input->post('i')==null)die();
+        $user_id =
+            ($this->permission->get_user_by_key($this->input->post('k'))!=false)
+                ?$this->permission->get_user_by_key($this->input->post('k'))
+                :$this->ion_auth->get_user_id();
 
+        if($this->input->post('i')==null)die();
         if($this->db->get_where('sta_likes',array(
-                'user_id'=>$this->ion_auth->get_user_id(),
+                'user_id'=>$user_id,
                 'comment_id'=>$this->input->post('i')
             ))
                 ->num_rows() == 0){
-
             $this->db->insert('sta_likes',array(
-                'user_id'=>$this->ion_auth->get_user_id(),
+                'user_id'=>$user_id,
                 'comment_id'=>$this->input->post('i')
             ));
             echo 1;
-
         }else{
             $this->db->delete('sta_likes',array(
-                'user_id'=>$this->ion_auth->get_user_id(),
+                'user_id'=>$user_id,
                 'comment_id'=>$this->input->post('i')
             ));
             echo 2;
@@ -395,23 +398,27 @@ class Forum extends CI_Controller {
         echo $this->ion_auth->login($this->input->post('e'), $this->input->post('p'));
     }
     function add_dislike(){
+        $user_id =
+            ($this->permission->get_user_by_key($this->input->post('k'))!=false)
+                ?$this->permission->get_user_by_key($this->input->post('k'))
+                :$this->ion_auth->get_user_id();
         if($this->input->post('i')==null)die();
 
         if($this->db->get_where('sta_dislikes',array(
-                'user_id'=>$this->ion_auth->get_user_id(),
+                'user_id'=>$user_id,
                 'comment_id'=>$this->input->post('i')
             ))
                 ->num_rows() == 0){
 
             $this->db->insert('sta_dislikes',array(
-                'user_id'=>$this->ion_auth->get_user_id(),
+                'user_id'=>$user_id,
                 'comment_id'=>$this->input->post('i')
             ));
             echo 1;
 
         }else{
             $this->db->delete('sta_dislikes',array(
-                'user_id'=>$this->ion_auth->get_user_id(),
+                'user_id'=>$user_id,
                 'comment_id'=>$this->input->post('i')
             ));
             echo 2;

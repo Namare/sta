@@ -6,22 +6,26 @@
         js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.9";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-<script src="<?=base_url()?>js/recorder.js"></script>
-<script src="<?=base_url()?>js/Fr.voice.js"></script>
 
 <script src="<?=base_url()?>js/app.js"></script>
 <div class="col-md-12 pad25">
 
 <div class="col-md-8 mgb20 ">
     <div class="app_list_forums">
-    <div class="col-md-12 pad0">
+
+
+        <div class="col-md-12 pad0">
         <h1 class="forum_h1"><?=$this->db->get_where('forum_thead', array('id_thead'=>$th_id))->result()[0]->title?></h1>
-    </div>
+            <div class="mgb10" style="padding: 0px 9px">
+                <div class="btn btn-default  dp_none return_menu" data-id="2"><i class="fa fa-arrow-circle-left"></i> Back</div>
+            </div>
+        </div>
 
 
 
         <?$co = 0;?>
         <?foreach($comments as $comment){
+            $cur_avatar = @$comment->autor_id;
             if($co == 1){
                 echo $pagination;
             }
@@ -33,7 +37,7 @@
                 <div class="col-md-2 forum_avatar">
 
                     <div class="col-md-12 col-xs-3 ">
-                        <img class="img-circle img-thumbnail "  src="<?=base_url()?>images/forum/avatar/<?=$comment->autor_id?>.jpg">
+                        <img class="img-circle img-thumbnail "  src="<?=base_url()?>images/forum/avatar/<?=(!file_exists($_SERVER['DOCUMENT_ROOT'].'/images/forum/avatar/'.$cur_avatar.'.jpg'))?'noavatar':$cur_avatar?>.jpg">
                     </div>
                     <div class="col-md-12 col-xs-9 comment_autor pad5">
                         <?=$comment->username?>
@@ -62,12 +66,12 @@
                     </div>
 
 
-                    <div class="col-md-3 col-xs-5 ">
+                    <div class="col-md-3 col-xs-5 app-clock">
                         <i class="fa fa-clock-o" aria-hidden="true"></i> <span  style="font-size: 12px"> <?=date('G:i  d/m/Y',$comment->add_time)?></span>
                     </div>
 
 
-                    <div class="col-md-3 text-center  pull-right btn-group-xs col-xs-2">
+                    <div class="col-md-3 text-center  pull-right btn-group-xs col-xs-2 app-left">
                     <?if($this->ion_auth->logged_in()){?>
                         <div class="btn btn-default" data-toggle="modal" data-target="#reportModal"><i class="fa fa-flag" aria-hidden="true"></i>  Complain</div>
                     <?}?>
@@ -101,19 +105,11 @@
                 <form class="forum_audio">
                 <input name="micro_forum"  style="display: none" id="app_mic" type="file" accept="audio/*"  capture="true">
                 </form>
-
-
-
-
             </div>
         </div>
 
-
-
-
     </div>
     <?php echo smiley_js(); ?>
-
     <div class="col-md-12  forumborder pad10">
         <div class="col-md-2 forum_avatar">
 

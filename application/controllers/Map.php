@@ -9,6 +9,7 @@ class Map extends CI_Controller {
 
         $this->breadcrumbs[] = 'STA';
         $this->breadcrumbs[] = 'Карта';
+        header('Access-Control-Allow-Origin: *');
 
     }
 
@@ -70,8 +71,12 @@ class Map extends CI_Controller {
     }
 
     function del_info_marker(){
-        if(!$this->ion_auth->logged_in())
-            redirect('login');
+        if($this->input->post('i')==null)die();
+
+        $user_id =
+            ($this->permission->get_user_by_key($this->input->post('k'))!=false)
+                ?$this->permission->get_user_by_key($this->input->post('k'))
+                :$this->ion_auth->get_user_id();
 
         if($this->input->post('i')==null)die();
         $points = $this->db->get_where('map_markers',array('marker_id'=>$this->input->post('i')))->result()[0]->points;
@@ -80,11 +85,22 @@ class Map extends CI_Controller {
         $data['points'] = $points;
         $this->db->where('marker_id', $this->input->post('i'));
         $this->db->update('map_markers',$data);
-        if($points >2 or $this->ion_auth->is_admin()){
+        if($points >2 or $this->ion_auth->get_users_groups($user_id)->result()[0]->id == 1){
             $this->db->delete('map_markers',array('marker_id'=>$this->input->post('i')));
         }
 
 
+    }
+
+    function update_coords(){
+        $user_id =
+            ($this->permission->get_user_by_key($this->input->post('k'))!=false)
+                ?$this->permission->get_user_by_key($this->input->post('k'))
+                :$this->ion_auth->get_user_id();
+        $data['lat'] = $this->input->post('lat');
+        $data['lng'] = $this->input->post('lng');
+        $this->db->where('id', $user_id);
+        $this->db->update('users',$data);
     }
 
     function ctrl_marker(){

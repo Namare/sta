@@ -72,13 +72,13 @@
         </div>
 
         <div class="col-md-12 form-group">
-                <label>Send: <span class="regErr"></span></label>
+                <label> <span class="regErr"></span></label>
                 <button class="reg_send btn btn-block btn-primary">Register</button>
         </div>
 
 
         </div>
-
+        Please fill out full profile application to get access to this service
     </div>
 </div>
 

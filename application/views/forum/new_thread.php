@@ -4,13 +4,14 @@
         <div class="col-md-12 pad0">
             <h1 class="forum_h1">Create new discussion</h1>
         </div>
-
+        <div class="app_list_forums">
 
                 <div class="col-md-12  forumborder">
-                    <h1><i class="fa fa-file-text" aria-hidden="true"></i> New thread</h1>
+
+                    <h1 class="forum_header pad10"><i class="fa fa-file-text" aria-hidden="true"></i> New thread</h1>
 
                     <div class="col-md-8 col-md-push-2">
-                        <form method="POST" action="<?=base_url()?>forum/new_thread">
+                        <form method="POST" class="app_new_thread" action="<?=base_url()?>forum/new_thread">
                         <div class="form-group">
                         <label>Header</label>
                         <input class="form-control"  name="title" placeholder="Header">
@@ -30,16 +31,18 @@
                         </div>
                         <div class="form-group" >
 
-                            <div  class="btn btn-default forum_smile pad5a"><i class="fa fa-smile-o no-ico "></i></div>
-                            <div  class="btn btn-default forum_youtube pad5a" data-toggle="modal" data-target="#youtubeModal"><i class="fa fa-youtube-square no-ico "></i></div>
-                            <div  class="btn btn-default forum_link pad5a f18" data-toggle="modal" data-target="#uploadModal"><i class="fa fa-image no-ico "></i></div>
-                            <button type="submit" class="btn btn-primary btn-block">Create</button>
+                            <div  class="btn btn-default forum_smile pad5a no_app"><i class="fa fa-smile-o no-ico "></i></div>
+                            <div  class="btn btn-default forum_youtube pad5a no_app" data-toggle="modal" data-target="#youtubeModal"><i class="fa fa-youtube-square no-ico "></i></div>
+                            <div  class="btn btn-default forum_link pad5a f18 no_app" data-toggle="modal" data-target="#uploadModal"><i class="fa fa-image no-ico "></i></div>
+                            <button type="submit" class="btn btn-primary btn-block no_app">Create</button>
+                            <a  class="btn btn-primary btn-block dp_none app_new_thread_btn">Create</a>
                             <div class="smiles_table">
                                 <?php echo $smiley_table; ?>
                             </div>
                         </div>
                         </form>
 
+                    </div>
                     </div>
 
                 </div>
