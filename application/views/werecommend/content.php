@@ -1,7 +1,7 @@
 <div class="col-md-12 mgb20" xmlns="http://www.w3.org/1999/html">
     <div class="col-md-12 white_block">
         <div class="col-md-12 mgb10">
-            <div class="col-md-12 adm_info"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Professional Service: <div class="btn btn-success pull-right" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add user</div></div>
+            <div class="col-md-12 adm_info"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Professional Service: <div class="btn btn-success pull-right" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add a service</div></div>
             <div class="col-md-3 pad0">
 
                 <div class="panel panel-default">
@@ -61,7 +61,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add user </h4>
+                <h4 class="modal-title">Adding service </h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid  pad0">

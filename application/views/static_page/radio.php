@@ -182,6 +182,26 @@
 
 </header>
 <?=$statmenu?>
+<script>
+    $(function(){
+
+        $.each($('.radio-item-holder a'),function(){
+            var radio_url = $(this).attr('href');
+            $(this).attr('href','javascript:void()');
+            $(this).attr('rel',radio_url);
+        });
+        $('.radio-item-holder a').on('click',function(){
+            localStorage.setItem("chanel", $(this).attr('rel'));
+            $('#radio_player').attr('src',$(this).attr('rel'));
+            localStorage.setItem("play", 1);
+            document.getElementById('radio_player').play();
+            $('.radio_play_btn').find('i').addClass('fa-pause');
+
+
+        });
+
+    });
+</script>
 <div class="container">
     <div id="content_section">
         <div id="main_content_section" class="action radio">

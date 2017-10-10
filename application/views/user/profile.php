@@ -3,14 +3,14 @@
 <div class="col-md-12 mgb20">
     <div class="col-md-12 white_block">
         <div class="col-md-12  col-xs-12 mgb10">
-            <div class="col-md-9 col-sm-7 col-xs-7 adm_info"><i class="fa fa-id-card-o" aria-hidden="true"></i> My profile:</div>
-            <div class=" col-md-2 col-sm-3  col-xs-5 btn-group z999">
-                <a href="javascript:void(0)" class=" btn btn-primary modal_mail" data-toggle="modal" data-target="#modal_mail"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-                <a href="javascript:void(0)" class=" btn btn-primary" data-toggle="modal" data-target="#modal_fav"><i class="fa fa-star" aria-hidden="true"></i></a>
-                <a href="javascript:void(0)" class=" btn btn-primary" data-toggle="modal" data-target="#attach_upload_modal"><i class="fa fa-upload" aria-hidden="true"></i></a>
-                <a href="<?=base_url()?>user/user_id/<?=$my->id?>" target="_blank" class=" btn btn-primary"><i class="fa fa-desktop" aria-hidden="true"></i></a>
+            <div class="col-md-9 col-sm-7 col-xs-5 adm_info"><i class="fa fa-id-card-o" aria-hidden="true"></i> My profile:</div>
+            <div class=" col-md-2 col-sm-3  col-xs-7  z999">
+                <a href="javascript:void(0)" class=" btn btn-primary modal_mail" data-toggle="modal" data-target="#modal_mail"><i class="fa fa-envelope no-ico" aria-hidden="true"></i></a>
+                <a href="javascript:void(0)" class=" btn btn-primary" data-toggle="modal" data-target="#modal_fav"><i class="fa fa-star no-ico" aria-hidden="true"></i></a>
+                <a href="javascript:void(0)" class=" btn btn-primary" data-toggle="modal" data-target="#attach_upload_modal"><i class="fa fa-upload no-ico" aria-hidden="true"></i></a>
+                <a href="<?=base_url()?>user/user_id/<?=$my->id?>" target="_blank" class=" btn btn-primary"><i class="fa fa-desktop no-ico" aria-hidden="true"></i></a>
             </div>
-            <div class=" col-md-1 col-sm-2 hidden-xs"><a href="javascript:void(0)" class=" btn btn-default toggl_block btn-block"><i class="fa fa-caret-up" aria-hidden="true"></i></a></div>
+            <div class=" col-md-1 col-sm-2 hidden-xs"><a href="javascript:void(0)" class=" btn btn-default toggl_block btn-block"><i class="fa fa-caret-down" aria-hidden="true"></i></a></div>
         </div>
 
         <div class="cls">
@@ -124,7 +124,7 @@
     <div class="col-md-12 white_block">
         <div class="col-md-12  col-xs-12 mgb10">
             <div class="col-md-11 col-sm-7 col-xs-7 adm_info"><i class="fa fa-id-card-o" aria-hidden="true"></i> Premium Access:</div>
-            <div class=" col-md-1 col-sm-2 hidden-xs"><a href="javascript:void(0)" class=" btn btn-default toggl_block btn-block"><i class="fa fa-caret-up" aria-hidden="true"></i></a></div>
+            <div class=" col-md-1 col-sm-2 hidden-xs"><a href="javascript:void(0)" class=" btn btn-default toggl_block btn-block"><i class="fa fa-caret-down" aria-hidden="true"></i></a></div>
         </div>
         <div class="cls">
             <form class="form-horizontal" method="post" action="<?=base_url()?>user/premium_data" enctype="multipart/form-data">
@@ -283,4 +283,6 @@
 
     </div>
 </div>
-
+<style>
+    .cls{display: none}
+</style>

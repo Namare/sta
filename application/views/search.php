@@ -1,5 +1,8 @@
 <div class="col-md-12">
     <div class="col-md-12 white_block">
+        <?if(count($users) == 0){?>
+            <h3><i class="fa fa-search"></i> No found</h3>
+        <?}else{?>
         <h3><i class="fa fa-search"></i> Find Users:</h3>
         <table class="table  table-hover">
             <thead>
@@ -41,5 +44,6 @@
             <?}?>
             </tbody>
         </table>
+        <?}?>
     </div>
 </div>

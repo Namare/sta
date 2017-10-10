@@ -12,8 +12,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <li class="active"><a href="#"><b><i class="fa fa-filter" aria-hidden="true"></i> Search</b></a></li>
 </ul>
 </div>
+<div class="logistic_app">
         <div class="filter col-md-10 col-md-offset-1">
-        <form action="<?=base_url()?>logistic" method="post">
+        <form class="app_filter" action="<?=base_url()?>logistic" method="post">
 
             <div class="col-md-12" >
                 <div class="col-md-4 form-group">
@@ -50,11 +51,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
                 <div class="btn-group" >
-                    <a href="<?=base_url()?>logistic<?=($this->input->server('QUERY_STRING')=='')?'?sort=asap':'';?>"  class="btn btn-default "><i class="fa fa-filter" aria-hidden="true"></i> Filter asap </a>
+                    <a href="<?=base_url()?>logistic<?=($this->input->server('QUERY_STRING')=='')?'?sort=asap':'';?>"  class="btn btn-default app_asap"><i class="fa fa-filter" aria-hidden="true"></i> Filter asap </a>
                 </div>
 
                 <div class="btn-group pull-right" >
-                    <button type="submit" class="btn btn-default "><i class="fa fa-eraser" aria-hidden="true"></i> Clear </button>
+                    <button type="submit" class="btn btn-default app_search "><i class="fa fa-eraser" aria-hidden="true"></i> Clear </button>
                     <button type="clear" class="btn btn-default "><i class="fa fa-search" aria-hidden="true"></i> Search</button>
                 </div>
             </div>
@@ -68,10 +69,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-    <div class="col-md-12" style="display: inline-flex;">
+    <div class="col-md-12 app_display" style="display: inline-flex;">
         <div class="list_order_content col-md-12">
 <!--Тут сам заказ           -->
+
  <div class="col-md-12 order_list_names hidden-xs hidden-sm">
+     <?if(count($orders)==0){echo"No loads found";}else{?>
      <div class="col-xs-1">Added</div>
      <div class="col-xs-3">Pick Up Location</div>
      <div class="col-xs-4">Delivery Location</div>
@@ -79,7 +82,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      <div class="col-xs-1">Equipment</div>
      <div class="col-xs-1">Price</div>
      <div class="col-xs-1">Rate</div>
+     <?}?>
  </div>
+
 <?foreach($orders as $order){
     $added_desc = time() - $order->added;
     $added_s = date( 's',time() - $order->added);
@@ -210,6 +215,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--Тут сам заказ   конец        -->
         </div>
     </div>
+</div>
 <?if($this->ion_auth->logged_in()){?>
 
 

@@ -13,7 +13,7 @@
                     <div class="col-md-8 col-md-push-2">
                         <form method="POST" class="app_new_thread" action="<?=base_url()?>forum/new_thread">
                         <div class="form-group">
-                        <label>Header</label>
+                        <label>Subject</label>
                         <input class="form-control"  name="title" placeholder="Header">
                         </div>
 

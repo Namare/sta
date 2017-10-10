@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="<?=base_url()?>bootstrap/js/bootstrap.min.js"></script>
-    <script src="<?=base_url()?>js/radio.js"></script>
+    <script src="<?=base_url()?>js/radio.js?<?=rand(1,10000)?>"></script>
     <script src="<?=base_url()?>js/map.js?<?=rand(1,1000)?>"></script>
     <script src="<?=base_url()?>js/main.js?<?=rand(1,1000)?>"></script>
 

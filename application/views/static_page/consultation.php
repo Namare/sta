@@ -231,7 +231,7 @@
                                                    value=""
                                                    size="40" aria-required="true"
                                                    aria-invalid="false"
-                                                   placeholder="* E-mail: "/>
+                                                   placeholder="E-mail: "/>
 										</span>
                             </p>
                             <p class="span4 field">
@@ -253,7 +253,7 @@
 									</span>
                         </p>
                         <p class="help-block">
-                            * - Поля, обязательные для заполнения						</p>
+                        					</p>
                         <p class="submit-wrap">
                             <input type="hidden" name="push" value="form">
                             <input type="reset" value="Очистить"
@@ -280,7 +280,7 @@
                    method:"POST",
                    data:$('#ajaxform').serialize(),
                    success:function(){
-                       alert('Message send');
+                       alert('Message was send');
                        $('#ajaxform')[0].reset();
                    }
                })

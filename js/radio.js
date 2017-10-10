@@ -6,6 +6,15 @@ STARDO = {
             $('.radio_load').hide();
         }
 
+        $('.radio_player').hover(
+            function(){
+                $('.radio_play_btn ').animate({color:'#df6018'},500);
+        },
+            function(){
+                $('.radio_play_btn ').animate({color:'white'},500);
+            }
+        );
+
 
 
         $('.radio_play_btn').on('click',function(){

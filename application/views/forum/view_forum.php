@@ -13,7 +13,7 @@
         <div class="col-md-12  forumblock ">
             <div class="btn-group app_control">
             <div class="btn btn-default dp_none return_menu" data-id="1"><i class="fa fa-arrow-circle-left"></i> Back</div>
-            <div class="btn btn-primary app_menu" data-id="add_thread"><i class="fa fa-plus"></i> New thread</div>
+            <div class="btn btn-success app_menu" data-id="add_thread"><i class="fa fa-plus"></i> New topic</div>
             </div>
 
 
