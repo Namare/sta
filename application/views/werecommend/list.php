@@ -2,7 +2,7 @@
 <?foreach($users as $user){?>
     <div class="col-md-12  mgb20 we_item">
     <div class="col-md-3 pad0"><img src="<?=base_url()?>file/avatars/<?=$user->avatar?>" class="img-thumbnail  avatar"></div>
-    <div class="col-md-7">
+    <div class="col-md-7 pad0">
         <div class="we-head col-md-12 "><?=$user->user_name?></div>
         <div class="col-md-12 pad0">
             <ul class="we-list">

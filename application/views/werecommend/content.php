@@ -1,8 +1,8 @@
-<div class="col-md-12 mgb20" xmlns="http://www.w3.org/1999/html">
-    <div class="col-md-12 white_block">
-        <div class="col-md-12 mgb10">
-            <div class="col-md-12 adm_info"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Professional Service: <div class="btn btn-success pull-right" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add a service</div></div>
-            <div class="col-md-3 pad0">
+<div class="col-md-12 mgb20">
+    <div class="col-md-12 white_block pad0">
+        <div class="col-md-12 mgb10 ">
+            <div class="col-md-12 adm_info mgb10 btn-group-xs"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Professional Service: <div class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add a service</div></div>
+            <div class="col-md-3  pad0">
 
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="fa fa-filter" aria-hidden="true"></i>  Filter:</div>
@@ -39,7 +39,7 @@
             </div>
 
 
-            <div class="col-md-9">
+            <div class="col-md-9 pad0">
                 <div class="col-md-12  we_rec">
                     <i class="fa fa-spinner fa-pulse fa-3x" aria-hidden="true"></i>
 

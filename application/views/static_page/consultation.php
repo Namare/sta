@@ -280,7 +280,7 @@
                    method:"POST",
                    data:$('#ajaxform').serialize(),
                    success:function(){
-                       alert('Message was send');
+                       alert('Message was sent');
                        $('#ajaxform')[0].reset();
                    }
                })

@@ -58,7 +58,7 @@
     </style>
     <style type='text/css'>
         h1 { font: normal 80px/78px Lato;  color:#242426; }
-        h2 { font: normal 50px/48px Lato;  color:#242426; }
+        h2 { font: normal 41px/48px Lato;  color:#242426; }
         h3 { font: normal 42px/48px Lato;  color:#242426; }
         h4 { font: normal 37px/46px Lato;  color:#242426; }
         h5 { font: bold 20px/33px Lato;  color:#242426; }
@@ -75,6 +75,19 @@
 
     <script type="text/javascript">
         // Init navigation menu
+        jQuery(window).scroll(function () {
+            if (jQuery(this).scrollTop() > 100) {
+                jQuery('#back-top').fadeIn();
+            } else {
+                jQuery('#back-top').fadeOut();
+            }
+        });
+        jQuery('#back-top a').click(function () {
+            jQuery('body,html').stop(false, false).animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
         jQuery(function(){
             // main navigation init
             jQuery('ul.sf-menu').superfish({
@@ -627,12 +640,11 @@
 
         bottom: 40px;
     }
-    @media (min-width: 1200px)
-    responsive.css:109
-    [class*="span"] {
-        float: left;
-        min-height: 1px;
-        margin-left: 0px;
+    @media (max-width: 1200px){
+
+        .slider_caption h1{
+        font-size: 25px;
+        }
     }
 
     .isStuck #small_logo {
@@ -648,6 +660,9 @@
         width: 380px;
     }
     .icon-odnoklassniki:before{content:"\f263"}
+   .dropdown-menu{
+        text-align: left;
+    }
 </style>
 </body>
 

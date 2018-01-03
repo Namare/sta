@@ -48,9 +48,9 @@ p{font-size: 16px}
 .mgt-5{margin-top: -5px}
 .mgt10{margin-top: 10px}
 .mgt20{margin-top: 20px}
-.mgb10{margin-bottom: 10px}
+.mgb10{margin-bottom: 10px !important;}
 .mgb20{margin-bottom: 20px}
-.mgb5{margin-bottom: 5px}
+.mgb5{margin-bottom: 5px !important;}
 .mgt0{margin-top: 0px}
 .mglr3{margin-right: 3px;margin-left: 3px}
 .breadcrumb {margin-bottom: 10px}
@@ -59,6 +59,8 @@ p{font-size: 16px}
 .orderlistmap img{
     width: 100%;
 }
+
+.mobile_del_com{display: none !important;}
 .text-left{text-align: left !important;}
 nav.header{
     background-color: #df6018;
@@ -128,18 +130,12 @@ a.logo{
         background-size: cover;
         margin-top: 3px;
     }
-
-}
-
-@media  (max-width: 775px) {
-    a.logo{
-        display: block;
-        height: 73px;
-        width: 392px;
-        background-size: cover;
-        margin-top: 12px;
+    .search_block_container{
+    top: 210px !important;
+    left: 3% !important;
     }
 }
+
 
 
 .navbar-default .navbar-nav>li>a {
@@ -178,7 +174,6 @@ div.submenu {
     height: 40px;
     width: 100%;
     padding: 0px 0px 0px 15px;
-    padding-top: 102px;
     margin-bottom: 10px;
     display: inline-table;
 }
@@ -197,6 +192,34 @@ div.submenu a{color:#fff !important; margin: 0px 5px}
 
 
 }
+
+@media  (max-width: 775px) {
+    a.logo{
+        display: block;
+        height: 59px;
+        width: 317px;
+        background-size: cover;
+        margin-top: 12px;
+    }
+
+
+    div.submenu {
+        padding-top: 5px;
+    }
+    .navbar-toggle{
+        margin-top: 15px;
+    }
+
+    .headsubmenu{
+        position: inherit;
+
+
+
+    }
+
+
+}
+
 .headmenu:hover .headsubmenu {
     display: block;
 }
@@ -508,7 +531,7 @@ display: table;
 }
 .toggl_block{
     z-index: 999999 !important;
-    display: block;
+    float: right;
 }
 .table_order td:first-child{
 
@@ -647,9 +670,9 @@ iframe.embed_pr{
 
 div.search_block_container{
     position: fixed;
-    width: 327px; text-align: left;
+    width: 335px; text-align: left;
     z-index: 11;
-    top: 21.555%;
+    top: 18.555%;
     left: 5%;
     display: none;
 
@@ -800,12 +823,12 @@ input.search_block{
     color: #000;
     background-color: #fff;
     width:300px;
-    z-index: 9999;
+    z-index: 100;
     padding: 10px 15px;
     border-radius: 0px 5px 5px 0px;
     overflow-y: scroll;
-    max-height: 280px;
-     display: none;
+    height: 280px;
+    display: none;
     top: 41px;
 }
 
@@ -825,3 +848,5 @@ input.search_block{
 }
 .pad05{padding: 0px 5px}
 .pad010{padding: 0px 10px}
+.radio-block:hover{color:  rgb(223, 96, 24)!important;cursor: pointer}
+

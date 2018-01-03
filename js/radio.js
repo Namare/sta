@@ -1,8 +1,7 @@
 STARDO = {
     init:function(){
-        if(window.location != 'https://stassociation.com/' && window.location != 'https://stassociation.com/#' ){
         $('.radio_load').prepend('<div class="load_chanels"></div><table class="mg0"><tr class="radio_player"><td class="pad0"><span class="pad010">Radio</span></td><td class="radio_play_btn pad05"> <i class="fa fa-play" aria-hidden="true"></i></td><td class="show_radio_list pad05"><i class="fa fa-list" aria-hidden="true"></i></td></tr></table><audio id="radio_player" controls="" preload="" src="http://cast.radiogroup.com.ua:8000/retro"><source src="" type="audio/mpeg"></audio></div>');
-        }else{
+        if(window.location == 'https://stassociation.com/' || window.location == 'https://stassociation.com/#' ){
             $('.radio_load').hide();
         }
 

@@ -5,8 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div  class="col-md-12 mgb20 ">
     <div class="col-md-12 white_block">
         <div class="col-md-12 mgb10">
-            <div class="col-md-11 adm_info"><i class="fa fa-check-square" aria-hidden="true"></i> Dispatch to Me:</div>
-            <div class=" col-md-1 col-sm-2  col-xs-4"><a href="javascript:void(0)" class=" btn btn-default toggl_block btn-block"><i class="fa fa-caret-down" aria-hidden="true"></i></a></div>
+            <div class="col-md-11 col-xs-6 adm_info"><i class="fa fa-check-square" aria-hidden="true"></i> Dispatch to Me:</div>
+            <div class=" btn btn-default toggl_block"><i class="fa fa-caret-down no-ico" aria-hidden="true"></i></div>
+
             <div class="cls">
                 <div id="app_list_dispach" class="col-md-12 pad0">
                     <table class="table table-hover ">
@@ -64,8 +65,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="col-md-12 mgb20">
     <div class="col-md-12 white_block">
         <div class="col-md-12 mgb10">
-            <div class="col-md-11 adm_info"><i class="fa fa-list-alt" aria-hidden="true"></i>  Pending Loads:</div>
-            <div class=" col-md-1 col-sm-2  col-xs-4"><a href="javascript:void(0)" class=" btn btn-default toggl_block btn-block"><i class="fa fa-caret-down" aria-hidden="true"></i></a></div>
+            <div class="col-md-11 col-xs-6 adm_info"><i class="fa fa-list-alt" aria-hidden="true"></i>  Pending Loads:</div>
+            <div class=" btn btn-default toggl_block"><i class="fa fa-caret-down no-ico" aria-hidden="true"></i></div>
 
         </div>
         <div class="cls">
@@ -106,8 +107,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="col-md-12 mgb20">
     <div class="col-md-12 white_block">
         <div class="col-md-12 mgb10">
-            <div class="col-md-11 adm_info"><i class="fa fa-list-alt" aria-hidden="true"></i> Posted Loads:</div>
-            <div class=" col-md-1 col-sm-2  col-xs-4"><a href="javascript:void(0)" class=" btn btn-default toggl_block btn-block"><i class="fa fa-caret-down" aria-hidden="true"></i></a></div>
+            <div class="col-md-11 col-xs-6 adm_info"><i class="fa fa-list-alt" aria-hidden="true"></i> Posted Loads:</div>
+            <div class=" btn btn-default toggl_block"><i class="fa fa-caret-down no-ico" aria-hidden="true"></i></div>
 
         </div>
         <div class="cls">
@@ -209,4 +210,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </div>
 </div>
+<script>
+    $(function(){
 
+        $('div.cls:eq(0)').show();
+        $('div.cls:eq(1)').show();
+    });
+</script>

@@ -39,6 +39,18 @@ FRM = {
             });
         });
 
+       if($('.app-clock').data('time')!= undefined){
+
+           $.each($('.app-clock'), function(){
+               var timestamp =  $(this).data('time') * 1000;
+               var date = new Date();
+               date.setTime(parseInt(timestamp));
+               $(this).find('span').text(
+                   date.toLocaleString()
+               );
+           });
+       }
+
 
 
         $('.thumb_up').on('click',function(){
@@ -179,6 +191,21 @@ FRM = {
             });
 
 
+        });
+
+
+        $('.forum_del_com').on('click', function(){
+            var th =  $(this);
+            var com_id = th.data('id');
+            $.ajax({
+                method:'POST',
+                url: BASE_URL+'forum/del_comment',
+                data: 'id='+ com_id,
+                    success:function(){
+                        $('.comment_block[data-id="'+com_id+'"]').slideUp(300);
+
+                    }
+            });
         });
 
         $('.forum_share').on('click',function(){$(this).parent().find('.share_box').toggle(200)});

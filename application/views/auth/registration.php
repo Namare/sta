@@ -5,7 +5,9 @@
         <div class="col-md-12  col-xs-12 mgb10">
             <div class="col-md-12 adm_info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Registration</div>
         </div>
+
         <div class="col-md-8 col-md-push-2">
+
         <div class="col-md-6 form-group">
             <label>Enter Username: </label>
             <input class="form-control" name="username" placeholder="User name">
@@ -78,7 +80,7 @@
 
 
         </div>
-        Please fill out full profile application to get access to this service
+
     </div>
 </div>
 

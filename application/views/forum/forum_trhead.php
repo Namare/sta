@@ -33,7 +33,7 @@
             ?>
 
 
-            <div class="col-md-12  forumborder comment_block">
+            <div class="col-md-12  forumborder comment_block" data-autor='<?=$comment->autor_id ?>' data-id='<?=$comment->comment_id ?>'>
                 <div class="col-md-2 forum_avatar">
 
                     <div class="col-md-12 col-xs-3 ">
@@ -66,22 +66,28 @@
                     </div>
 
 
-                    <div class="col-md-3 col-xs-5 app-clock">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span  style="font-size: 12px"> <?=date('G:i  d/m/Y',$comment->add_time)?></span>
+                    <div class="col-md-3 col-xs-4 app-clock" data-time='<?=$comment->add_time?>'>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span  style="font-size: 12px"> <?=date('G:i  m/d/Y',$comment->add_time)?></span>
                     </div>
 
 
-                    <div class="col-md-3 text-center  pull-right btn-group-xs col-xs-2 app-left">
+                    <div class="col-md-4 text-center  pull-right btn-group-xs col-xs-4 app-left pad0">
                     <?if($this->ion_auth->logged_in()){?>
                         <div class="btn btn-default" data-toggle="modal" data-target="#reportModal"><i class="fa fa-flag" aria-hidden="true"></i>  Complain</div>
                     <?}?>
-                        <div class="btn btn-default forum_quote "  ><i class="fa fa-quote-right" aria-hidden="true"></i>  Reply</div></div>
+                        <div class="btn btn-default forum_quote "  ><i class="fa fa-quote-right" aria-hidden="true"></i>  Reply</div>
+                        <div class="btn btn-danger mobile_del_com "   data-autor='<?=$comment->autor_id ?>' data-id='<?=$comment->comment_id ?>' ><i class="fa fa-trash no-ico danger" aria-hidden="true"> </i></div>
+                        <?if($comment->autor_id ==  $this->ion_auth->get_user_id()){?>
+                        <div class="btn btn-danger forum_del_com " data-id='<?=$comment->comment_id ?>' ><i class="fa fa-trash no-ico" aria-hidden="true"> </i></div>
+                        <?}?>
+                    </div>
 
                 </div>
 
             </div>
 
         <?}?>
+        <br>
         <?=$pagination?>
 
         <div class="col-md-10 mgb10 app_forum_send">
@@ -92,14 +98,14 @@
             <div class="form-group">
                 <button data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary app_msg_send">Send comment</button>
 
-                <button  data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary  app_mic"><i class="fa fa-microphone"></i></button>
+                <button id="record" onclick="toggleRecording(this);"  data-url='<?=current_url()?>' data-id='<?=$th_id?>' style="display: none" class="btn btn-primary  app_mic"><i class="fa fa-microphone"></i></button>
                 <button  data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary  app_cam"><i class="fa fa-camera"></i></button>
 
-                <button   data-url='<?=current_url()?>' style="display: none" data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary app_audio_send"><i class="fa fa-microphone"></i> Send record</button>
+
                 <button  data-url='<?=current_url()?>' style="display: none" data-url='<?=current_url()?>' data-id='<?=$th_id?>' class="btn btn-primary app_img_send"><i class="fa fa-camera"></i> Send photo</button>
 
                 <form class="forum_photo">
-                <input name="photo_forum" style="display: none" id="app_cam"  type="file" accept="image/*"  capture="camera">
+                <input name="photo_forum" style="display: none" id="app_cam"  type="file" accept="image/*">
 
                 </form>
                 <form class="forum_audio">

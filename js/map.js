@@ -28,11 +28,11 @@ MAP = {
         var markEnd = null;
 
 
-        var pickuploc =document.getElementById('pickuploc');
-        var deliveryloc =document.getElementById('deliveryloc');
+        var pickuploc   =     document.getElementById('pickuploc');
+        var deliveryloc =     document.getElementById('deliveryloc');
 
-        var pickuploc2 =document.getElementById('filter_from');
-        var deliveryloc2 =document.getElementById('filter_to');
+        var pickuploc2  =    document.getElementById('filter_from');
+        var deliveryloc2 =   document.getElementById('filter_to');
 
 
         var autocomplete = new google.maps.places.Autocomplete(pickuploc);

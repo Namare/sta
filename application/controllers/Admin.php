@@ -10,7 +10,8 @@ class Admin extends CI_Controller {
         if (!$this->ion_auth->is_admin())
             return show_error('You must be an administrator to view this page.');
         $this->breadcrumbs[] = 'STA';
-        $this->breadcrumbs[] = 'Админ панель';
+        $this->breadcrumbs[] = array('name'=>'Админ панель','link'=>base_url().'auth');
+
     }
 
     // redirect if needed, otherwise display the user list
@@ -20,8 +21,10 @@ class Admin extends CI_Controller {
     }
 
     public function users(){
+        $this->breadcrumbs[] = array('name'=>'Управление пользователями');
         $header['breadcrumbs'] = $this->breadcrumbs;
-        $header['breadcrumbs'][] ="Управление пользователями";
+
+
 
         $script['adm'][] = "contol_user";
         $data['content']['header']= "Управление пользователями";

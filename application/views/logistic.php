@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <select class="form-control" name="filter_auto" >
                         <option value="0">Not select</option>
                         <option value="Rifer">Rifer</option>
-                        <option value="Flat Bed Track">Flat Bed</option>
+                        <option value="Flat">Flat Bed</option>
                         <option value="Dryvan">Dryvan</option>
                         <option value="Car-carrier">Car-carrier</option>
                         <option value="Sprinter">Sprinter</option>
@@ -43,20 +43,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             </div>
 
-
-
-
-
             <div class="col-md-12">
-
 
                 <div class="btn-group" >
                     <a href="<?=base_url()?>logistic<?=($this->input->server('QUERY_STRING')=='')?'?sort=asap':'';?>"  class="btn btn-default app_asap"><i class="fa fa-filter" aria-hidden="true"></i> Filter asap </a>
                 </div>
 
                 <div class="btn-group pull-right" >
-                    <button type="submit" class="btn btn-default app_search "><i class="fa fa-eraser" aria-hidden="true"></i> Clear </button>
-                    <button type="clear" class="btn btn-default "><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                    <button  class="btn btn-default  app_clear"><i class="fa fa-eraser" aria-hidden="true"></i> Clear </button>
+                    <button  class="btn btn-default app_search"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
                 </div>
             </div>
 
@@ -190,6 +185,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                      </div>
                      <div class="col-md-12">
                          <i class="fa fa-map-marker" aria-hidden="true"></i>  Distance : <b><?=$dis_ml?> ml</b>
+                     </div>
+                     <div class="col-md-12">
+                         <i class="fa fa-truck" aria-hidden="true"></i>  Equipment : <b>  <?=$order->auto?></b>
                      </div>
                      <div class="col-md-12">
                          Rate: ~ <b><?=@round($order->price/$dis_ml,2)?> $/ml</b>
@@ -355,8 +353,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
 
                     <?}else{?>
-                        <p>Please fill out your profile completely to get a premium access.
-                            Go to profile. <br>Please upload following documents:</p>
+                        <p>Please fill out your profile completely to get a premium access.</p>
                         <ul>
                             <li>CDL</li>
                             <li>DL</li>
@@ -410,12 +407,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                     <?}else{?>
                         <p>Please fill out your profile completely to get a premium access.
-                            Go to profile. <br>Please upload following documents:</p>
-                        <ul>
-                        <li>CDL</li>
-                        <li>DL</li>
-                        <li>Insurance</li>
-                        </ul>
+                            Go to profile.</p>
+
                         <p>Go to <a href="<?=base_url()?>/user">profile<a/></p>
                     <?}?>
                 </div>

@@ -15,14 +15,52 @@ class Logistic extends CI_Controller {
 
     }
 
+    function test(){
+
+    $this->load->view('test');
+    }
+
+    function upload_app(){
+       echo"asdasd";
+        $name = time().'p.wav';
+        $config['upload_path']         = $_SERVER['DOCUMENT_ROOT'].'/audio/';
+        $config['allowed_types']       = '*';
+        $config['file_name']           = $name;
+        $config['max_size']            = 150000;
+        $config['max_width']           = 0;
+        $config['max_height']          = 0;
+        $config['overwrite']           = true;
+        $this->load->library('upload', $config);
+        if($this->upload->do_upload('recording')){
+            echo $name;
+        }
+       echo $this->upload->data();
+        echo $this->upload->display_errors();
+        echo var_dump($_FILES);
+    }
+
     public function index()
 	{
         $data['apikey']="&amp;key=AIzaSyCGWPy8EXdIZF6fIGX5IsMlrv2y-pT1BZY" ;
 
+      if($this->input->get('f_a')!==null){
+          if($this->input->get('f_a')!='0')
+          $this->db->like('auto',$this->input->get('f_a'),'both');
+        }
+      if($this->input->get('f_f')!=null){
+          $this->db->like('from_end',$this->input->get('f_f'));
+        }
+      if($this->input->get('f_t')!=null){
+          $this->db->like('to_end',$this->input->get('f_t'));
+        }
+
 
         if($this->input->post()){
-            if($this->input->post('filter_from')){$this->db->like('from_end',$this->input->post('filter_from'));}
-            if($this->input->post('filter_to')){$this->db->like('to_end',$this->input->post('filter_from'));}
+
+            $pick = explode( ',', $this->input->post('filter_from'));
+            $dil = explode( ',', $this->input->post('filter_to'));
+            if($this->input->post('filter_from')){$this->db->like('from_end',$pick[0]);}
+            if($this->input->post('filter_to')){$this->db->like('to_end',$dil[0]);}
 
             if($this->input->post('filter_start')){$this->db->where('date_start',$this->input->post('filter_start'));}
             if($this->input->post('filter_end')){$this->db->where('date_end',$this->input->post('filter_end'));}
@@ -51,6 +89,20 @@ class Logistic extends CI_Controller {
 	}
 
     function send_cons(){
+        $this->load->library('email');
+
+        $this->email->from('it@namgam.com', 'STA');
+        $this->email->to('nwebootn@gmail.com, ygrynko@gmail.com');
+
+
+        $this->email->subject('STA report!');
+        $this->email->message($this->input->post('e').':  '.$this->input->post('m'));
+
+        $this->email->send();
+
+    }
+
+    function send_support(){
         $this->load->library('email');
 
         $this->email->from('it@namgam.com', 'STA');

@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'vps22566.inmotionhosting.com',
-	'username' => 'bestau9_sta',
-	'password' => '6699ootn',
-	'database' => 'bestau9_sta',
+	'hostname' => 'dezaro.mysql.ukraine.com.ua',
+	'username' => 'dezaro_sta',
+	'password' => '346klnyb',
+	'database' => 'dezaro_sta',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

@@ -7,8 +7,21 @@ div.submenu{
     z-index: 50;
     position: relative;
 }
-div.submenu a{color:#fff !important; margin: 0px 10px}
 
+div.submenu a{color:#fff !important; margin: 0px 10px}
+@media (max-width: 767px){
+
+    .isStuck #small_logo {
+        height: 60px;
+    }
+#logo{
+    width: 55%;
+
+}
+    nav.isStuck{
+        height: 120px;
+    }
+}
 .headsubmenu{
     list-style-type: none;
     background-color: #402b2a;
@@ -194,3 +207,9 @@ input.search_block{
 
 .pad05{padding: 0px 5px}
 .pad010{padding: 0px 10px}
+.radio-block:hover{color:  rgb(223, 96, 24)!important;cursor: pointer}
+
+
+.isStuck .select-menu{
+    margin-top: 64px;
+}

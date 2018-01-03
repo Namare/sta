@@ -3,14 +3,14 @@
 <div class="col-md-12 mgb20">
     <div class="col-md-12 white_block">
         <div class="col-md-12  col-xs-12 mgb10">
-            <div class="col-md-9 col-sm-7 col-xs-5 adm_info"><i class="fa fa-id-card-o" aria-hidden="true"></i> My profile:</div>
-            <div class=" col-md-2 col-sm-3  col-xs-7  z999">
+            <div class="col-md-9 col-sm-7 col-xs-12 adm_info"><i class="fa fa-id-card-o" aria-hidden="true"></i> My profile:</div>
+            <div class=" col-md-2 col-sm-3  col-xs-12  z999">
                 <a href="javascript:void(0)" class=" btn btn-primary modal_mail" data-toggle="modal" data-target="#modal_mail"><i class="fa fa-envelope no-ico" aria-hidden="true"></i></a>
                 <a href="javascript:void(0)" class=" btn btn-primary" data-toggle="modal" data-target="#modal_fav"><i class="fa fa-star no-ico" aria-hidden="true"></i></a>
                 <a href="javascript:void(0)" class=" btn btn-primary" data-toggle="modal" data-target="#attach_upload_modal"><i class="fa fa-upload no-ico" aria-hidden="true"></i></a>
                 <a href="<?=base_url()?>user/user_id/<?=$my->id?>" target="_blank" class=" btn btn-primary"><i class="fa fa-desktop no-ico" aria-hidden="true"></i></a>
             </div>
-            <div class=" col-md-1 col-sm-2 hidden-xs"><a href="javascript:void(0)" class=" btn btn-default toggl_block btn-block"><i class="fa fa-caret-down" aria-hidden="true"></i></a></div>
+            <div class=" btn btn-default toggl_block"><i class="fa fa-caret-down no-ico" aria-hidden="true"></i></div>
         </div>
 
         <div class="cls">
@@ -44,7 +44,9 @@
                 <div class="col-md-9">
 
                     <select class="form-control"name="profilecompany">
+                        <option <?=(1==$this->ion_auth->user($my->id)->row()->company_id)?'selected':'';?> value="1">No company</option>
                         <?foreach($this->db->get('company')->result() as $company ){?>
+                            <?if($company->id==1)continue;?>
                             <option <?=($company->id==$this->ion_auth->user($my->id)->row()->company_id)?'selected':'';?> value="<?=$company->id?>"><?=$company->company_name?></option>
                         <?}?>
                     </select>
@@ -59,7 +61,7 @@
                 <div class="form-group">
                     <label  class="control-label col-md-3"> Equipment: </label>
                     <div class="col-md-9">
-                        <select class="form-control"name="profileload">
+                        <select class="form-control" name="profileload">
                            <?foreach($this->db->get('type_auto')->result() as $auto ){?>
                                <option <?=($auto->auto_id==$this->ion_auth->user($my->id)->row()->auto_id)?'selected':'';?> value="<?=$auto->auto_id?>"><?=$auto->auto_name?></option>
                             <?}?>
@@ -76,9 +78,19 @@
 
                 <div class="form-group">
                     <label  class="control-label col-md-3">You are:</label>
-                    <div class="col-md-9">
+
+                    <div class="col-md-9" >
+                        <?if($this->ion_auth->is_admin()){?>
                         <input class="form-control" disabled  value="<?=$this->ion_auth->get_users_groups($my->id)->row()->name?>" name="username">
+                        <?}else{?>
+                            <select class="form-control" name="group">
+                                <option <?=($this->ion_auth->get_users_groups($my->id)->row()->id==3)?'selected': '' ;?> value="3">Driver</option>
+                                <option <?=($this->ion_auth->get_users_groups($my->id)->row()->id==4)?'selected': '' ;?> value="4">Owner-operator</option>
+                                <option <?=($this->ion_auth->get_users_groups($my->id)->row()->id==5)?'selected': '' ;?> value="5">Company</option>
+                            </select>
+                        <?}?>
                     </div>
+
                 </div>
 
 
@@ -124,7 +136,7 @@
     <div class="col-md-12 white_block">
         <div class="col-md-12  col-xs-12 mgb10">
             <div class="col-md-11 col-sm-7 col-xs-7 adm_info"><i class="fa fa-id-card-o" aria-hidden="true"></i> Premium Access:</div>
-            <div class=" col-md-1 col-sm-2 hidden-xs"><a href="javascript:void(0)" class=" btn btn-default toggl_block btn-block"><i class="fa fa-caret-down" aria-hidden="true"></i></a></div>
+            <div class=" btn btn-default toggl_block"><i class="fa fa-caret-down no-ico" aria-hidden="true"></i></div>
         </div>
         <div class="cls">
             <form class="form-horizontal" method="post" action="<?=base_url()?>user/premium_data" enctype="multipart/form-data">
@@ -162,7 +174,7 @@
                     </div>
             </div>
             <div class="form-group form-group-sm col-md-6 pad0">
-                <label class="control-label col-md-4"> # Policy Expiration </label>
+                <label class="control-label col-md-4"> Policy Expiration </label>
                 <div class="col-md-8">
                     <input class="form-control"   value="<?=$this->ion_auth->user($my->id)->row()->policy_name?>"  name="premiumname" placeholder="MM-DD-YYYY">
                 </div>
@@ -285,4 +297,5 @@
 </div>
 <style>
     .cls{display: none}
+    .white_block{display: flow-root;}
 </style>

@@ -345,6 +345,23 @@ class Forum extends CI_Controller {
 
     }
 
+    function del_comment(){
+        if(!$this->input->post())return show_error('Нет данных.');
+        if(!is_numeric($this->input->post('id')))return show_error('ошибка.');
+        $user_id =
+            ($this->permission->get_user_by_key($this->input->post('k'))!=false)
+                ?$this->permission->get_user_by_key($this->input->post('k'))
+                :$this->ion_auth->get_user_id();
+
+        $check_user = $this->db->get_where('forum_comments',array('comment_id'=>$this->input->post('id')))->result()[0]->autor_id;
+        echo var_dump($user_id);
+        echo $check_user;
+        if($check_user == $user_id){
+            $this->db->delete('forum_comments',array('comment_id'=>$this->input->post('id')));
+        }
+
+    }
+
     function delete_thread(){
         if(!$this->ion_auth->is_admin())die('No admin');
         if(!$this->input->post())return show_error('Нет данных.');

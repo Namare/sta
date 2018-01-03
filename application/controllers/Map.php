@@ -25,6 +25,7 @@ class Map extends CI_Controller {
         $data['map_markers'] = $this->db->get('map_markers_types')->result();
         $this->db->order_by('date_add','desc');
         $this->db->join('map_markers_types', 'map_markers.marker_type = map_markers_types.type_id');
+        $this->db->where(array('date_add >'=> time() - 86400 ));
         $data['info_markers'] = $this->db->get('map_markers')->result();
         $this->load->view('map/map',$data);
 
@@ -85,9 +86,8 @@ class Map extends CI_Controller {
         $data['points'] = $points;
         $this->db->where('marker_id', $this->input->post('i'));
         $this->db->update('map_markers',$data);
-        if($points >2 or $this->ion_auth->get_users_groups($user_id)->result()[0]->id == 1){
-            $this->db->delete('map_markers',array('marker_id'=>$this->input->post('i')));
-        }
+
+        $this->db->delete('map_markers',array('marker_id'=>$this->input->post('i')));
 
 
     }
@@ -112,13 +112,53 @@ class Map extends CI_Controller {
     }
 
     function app_markers(){
+        $user_id =
+            ($this->permission->get_user_by_key($this->input->get('k'))!=false)
+                ?$this->permission->get_user_by_key($this->input->get('k'))
+                :$this->ion_auth->get_user_id();
+        if($this->input->get('k')!=''){
+            $lat1 = $this->ion_auth->user($user_id)->row()->lat + 1;
+            $lat2 = $this->ion_auth->user($user_id)->row()->lat - 1;
+            $lng1 = $this->ion_auth->user($user_id)->row()->lng + 1;
+            $lng2 = $this->ion_auth->user($user_id)->row()->lng - 1;
+
+            $array = array('lat <' => $lat1, 'lat >' => $lat2, 'lng <' => $lng1, 'lng >' => $lng2);
+            $this->db->where($array);
+        }
+
+
         $this->db->join('map_markers_types','type_id=marker_type');
+        $this->db->where(array('date_add >'=> time() - 86400 ));
         $data['markers'] = $this->db->get('map_markers')->result();
         $this->load->view('map/app_markers',$data);
     }
 
+    function app_notification_auto(){
+        $user_id =
+            ($this->permission->get_user_by_key($this->input->post('k'))!=false)
+                ?$this->permission->get_user_by_key($this->input->post('k'))
+                :$this->ion_auth->get_user_id();
+        if($this->input->post('k')!=''){
+            echo $this->ion_auth->user($user_id)->row()->notification_auto;
+            $this->db->query('update users set notification_auto = 0 where id ='.$user_id);
+        }
+
+    }
+
 
     function app_markers_dist(){
+        $user_id =
+            ($this->permission->get_user_by_key($this->input->get('k'))!=false)
+                ?$this->permission->get_user_by_key($this->input->get('k'))
+                :$this->ion_auth->get_user_id();
+        if($this->input->get('k')!=''){
+            $lat1 = $this->ion_auth->user($user_id)->row()->lat + 1;
+            $lat2 = $this->ion_auth->user($user_id)->row()->lat - 1;
+            $lng1 = $this->ion_auth->user($user_id)->row()->lng + 1;
+            $lng2 = $this->ion_auth->user($user_id)->row()->lng - 1;
+            $array = array('lat <' => $lat1, 'lat >' => $lat2, 'lng <' => $lng1, 'lng >' => $lng2);
+            $this->db->where($array);
+        }
         $this->db->join('map_markers_types','type_id=marker_type');
         $data['markers'] = $this->db->get('map_markers')->result();
         $this->load->view('map/app_markers_dist',$data);

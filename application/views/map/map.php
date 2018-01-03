@@ -83,8 +83,12 @@
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>style/map.css?<?=rand(1,10000)?>" >
 
     <script>
+
         $(function(){
+
+
             $('.submenu, nav').hide();
+            $('header').hide();
 
 
             $('.change_status').on('change',function(){
@@ -108,28 +112,35 @@
              track_marker = [];
              alert_marker = [];
              police_marker = [];
+
             $('.p').each(function(data){
                 var st = '';
                 if($(this).data('status')== '1'){
-                     st = ''
+                     st = '';
                 }
 
                 if($(this).data('status')== '2'){
-                     st = '1'
+                     st = '1';
                 }
 
                 if($(this).data('status')== '3'){
-                     st = '3'
+                     st = '3';
                 }
 
                 if($(this).data('status')== '4'){
-                     st = '2'
+                     st = '2';
                 }
                 var marker = new google.maps.Marker({
                     position:  {lat: $(this).data('lat'), lng:$(this).data('lng')},
                     map: addMAP,
                     animation: google.maps.Animation.DROP,
-                    icon:BASE_URL+'icon/track'+st+'.png'
+                    icon:{
+                    url: BASE_URL+'icon/track'+st+'.png',
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(0, 0),
+                        scaledSize: new google.maps.Size(40, 40)
+                }
                 });
                 track_marker.push(marker);
                 var infowindow = new google.maps.InfoWindow({
@@ -163,19 +174,24 @@
             }
 
             var ninfowindow<?=$im->marker_id?> = new google.maps.InfoWindow({
-                content:'<div class="panel mg0"><b>Added:</b> <?=date('d.m h:i', $im->date_add)?></div> <br>' +
+                content:'<div class="panel mg0"><b>Added:</b> <span class="change_time" data-time="<?=$im->date_add?>"><?=date('m.d h:i', $im->date_add)?></span></div> <br>' +
                     '<div data-id="<?=$im->marker_id?>" class="btn del_info_marker btn-default btn-block mgb5">Delete marker</div>',
                 maxWidth: 320
             });
             google.maps.event.addListener(info_marker<?=$im->marker_id?>,'click',function() {
                 ninfowindow<?=$im->marker_id?>.open(addMAP, info_marker<?=$im->marker_id?>);
+                var timestamp =  $('.change_time').data('time') * 1000;
+                var date = new Date();
+                date.setTime(parseInt(timestamp));
+                $('.change_time').text(date.toLocaleString());
             });
             <?}?>
 
 
 
 
-            $('.hide_track').on('click',function(){
+            $('body').on('click','.hide_track',function(){
+
                 if($(this).find('span').text() == 'Hide truck'){
                     var map = null;
                     $(this).find('span').text('Show truck');
@@ -190,9 +206,11 @@
                     }
                     track_marker[i].setMap(map);
                 }
+
             });
 
-            $('.hide_police').on('click',function(){
+            $('body').on('click','.hide_police',function(){
+
                 if($(this).find('span').text() == 'Show police'){
                     var map = addMAP;
                     $(this).find('span').text('Hide police');
@@ -201,15 +219,18 @@
                     $(this).find('span').text('Show police');
                 }
 
+
                 for (var i = 0; i < track_marker.length; i++) {
                     if(map!=null){
                         police_marker[i].setAnimation(google.maps.Animation.DROP);
                     }
                     police_marker[i].setMap(map);
                 }
+
             });
 
-            $('.hide_alert').on('click',function(){
+            $('body').on('click','.hide_alert',function(){
+
                 if($(this).find('span').text() == 'Show warnings'){
                     var map = addMAP;
                     $(this).find('span').text('Hide warnings');
@@ -262,7 +283,7 @@
                     });
 
                     $.ajax({
-                        url:"<?base_url()?>map/add_marker",
+                        url:"<?=base_url()?>map/add_marker",
                         method:'POST',
                         data:"id="+current_marker.id+"" +
                             "&lat="+e.latLng.lat()+
@@ -272,6 +293,9 @@
                     $('tr.mid').css({"background-color":"#fff"})
                 }
             });
+
+
+
 
 
 

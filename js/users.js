@@ -17,11 +17,11 @@ USR = {
 
         $('.toggl_block').on('click',function(){
             $(this).parent().parent().parent().find('div.cls').fadeToggle(150);
-            if($(this).children('i').attr('class')=='fa fa-caret-up'){
-                $(this).children('i').attr('class','fa fa-caret-down');
+            if($(this).children('i').attr('class')=='fa fa-caret-up no-ico'){
+                $(this).children('i').attr('class','fa fa-caret-down no-ico');
             }
             else{
-                $(this).children('i').attr('class','fa fa-caret-up');
+                $(this).children('i').attr('class','fa fa-caret-up no-ico');
             }
 
         });
@@ -36,6 +36,15 @@ USR = {
             $.ajax({
                 method:'POST',
                 url:BASE_URL+'user/phone',
+                data:'p='+$(this).val()
+
+            });
+        });
+
+        $('select[name="group"]').on('change',function(){
+            $.ajax({
+                method:'POST',
+                url:BASE_URL+'user/group',
                 data:'p='+$(this).val()
 
             });

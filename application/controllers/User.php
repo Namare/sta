@@ -212,17 +212,21 @@ class User extends CI_Controller {
             "id":"'.$data[0]->user_id.'",
             "user":"'.$data[0]->username.'"
         }';
-
     }
+
     function set_dispatch_user(){
         if($this->input->post('id')==null)die();
         $this->db->where('id',$this->uri->segment(3));
         $this->db->update('logistic_orders',array('user_id'=>$this->input->post('id')));
 
+        $this->db->where('id',$this->input->post('id'));
+        $this->db->update('users',array('notification_auto '=>'1'));
+
+
     }
 
     function set_dispatch_user_null(){
-        //@ToDo проверку на то кому принадлежит заказ
+        //ToDo проверку на то кому принадлежит заказ
         //if($this->input->post('id')==null)die();
         $this->db->where('id',$this->uri->segment(3));
         $this->db->update('logistic_orders',array('user_id'=> null));
@@ -378,6 +382,13 @@ class User extends CI_Controller {
         $data['phone'] =$this->input->post('p');
         $this->db->where('id', $this->ion_auth->get_user_id());
         $this->db->update('users',$data);
+    }
+    function group(){
+        if($this->input->post('p')==null)die();
+
+        $data['group_id'] =$this->input->post('p');
+        $this->db->where('id', $this->ion_auth->get_user_id());
+        $this->db->update('users_groups',$data);
     }
 
     function firstname(){
